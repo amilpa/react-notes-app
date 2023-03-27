@@ -14,20 +14,7 @@ function App() {
 	const [dark,setDark] = useState(false)
 
 
-	const [notes, setNotes] = useState([
-		{
-			id : nanoid(),
-			text : "This is my first note",
-			date :  (new Date()).toLocaleDateString()
-		}
-	])
-
-	useEffect(() => {
-		localStorage.setItem(
-			'react-notes-app-data',
-			JSON.stringify(notes)
-		)
-	},[notes])
+	const [notes, setNotes] = useState([])
 
 	useEffect(()=>{
 		const savedNotes = JSON.parse(localStorage.getItem('react-notes-app-data'))
@@ -36,7 +23,15 @@ function App() {
 			setNotes(savedNotes)
 		}
 	},[])
-	
+
+	useEffect(() => {
+		localStorage.setItem(
+			'react-notes-app-data',
+			JSON.stringify(notes)
+		)
+		},[notes])
+
+
 
 	const [search, setSearch] = useState('')
 
